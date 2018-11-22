@@ -1,0 +1,74 @@
+ <div class="col-other">
+    <div class="inner">
+        <div class="other-item" id="categoryandsearch">
+        <form action="{:url('index/Cate/lst')}" method="post">
+            <div class="search">
+                <label class="search-wrap">
+                        <input type="text" id="searchtxt" name="search" placeholder="输入关键字搜索" style="width:180px;" />
+                         <input type="submit" value=" " style="float:right;width:40px;cursor:pointer;">
+                        <span class="search-icon" style="width:45px;height:30px; z-index:-1;">
+                        <i class="fa fa-search"></i>
+                        </span>
+                       
+                </label>
+                <ul class="search-result"></ul>
+            </div>
+        </form>
+            <ul class="category mt20" id="category">
+                <li data-index="0" class="slider"></li>
+                <li data-index="1"><a href="{:url('index/Cate/lst')}">全部文章</a></li>
+                {volist name="cateRes" id="cates"}
+                <li data-index="{$i+1}"><a href="{:url('index/Cate/lst')}?cate={$cates.id}">{$cates.catename}</a></li>
+                {/volist}
+            </ul>
+        </div>
+        <!--右边悬浮 平板或手机设备显示-->
+        <div class="category-toggle"><i class="layui-icon">&#xe603;</i></div>
+        <div class="article-category">
+            <div class="article-category-title">分类导航</div>
+                <a href="{:url('index/Cate/lst')}">所有文章</a>
+            <div class="f-cb"></div>
+        </div>
+        <!--热门文章-->
+        <div class="blog-mask animated layui-hide"></div>
+        <div class="other-item">
+            <h5 class="other-item-title">热门文章</h5>
+            <div class="inner">
+                <ul class="hot-list-article">
+                    {volist name="hotRes" id="hots"}
+                    <li><a href="{:url('index/Article/index',array('id'=>$hots['id']))}">{$hots.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+        <!-- 置顶推荐 -->
+        <div class="other-item">
+            <h5 class="other-item-title">置顶推荐</h5>
+            <div class="inner">
+                <ul class="hot-list-article">
+                    {volist name="stateRes" id="states"}
+                    <li><a href="{:url('index/Article/index',array('id'=>$states['id']))}">{$states.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+        <!-- 最近访客 -->
+        <div class="other-item">
+            <h5 class="other-item-title">友情链接</h5>
+            <div class="inner">
+                <dl class="vistor">
+                    {volist name="linkRes" id="links"}
+                    <dd><a href="{$links.url}">
+                        {if condition="$links['pic'] neq ''"}
+                            <img src="{$links.pic}">
+                        {else/}
+                            <img src="__PUBLIC__/image/linkWrong.jpg">
+                        {/if}
+                    <cite>{$links.title}</cite>
+                    </a></dd>
+                    {/volist}
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

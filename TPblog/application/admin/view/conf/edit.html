@@ -1,0 +1,150 @@
+<!-- 头部 -->
+{include file="common/top"}
+<!-- /头部 -->
+<div class="main-container container-fluid">
+    <div class="page-container">
+                    <!-- Page Sidebar -->
+         {include file="common/left"}
+        <!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Breadcrumb -->
+            <div class="page-breadcrumbs">
+                <ul class="breadcrumb">
+                 <li>
+                    <a href="{:url('index/index')}">系统</a>
+                </li>
+                <li>
+                    <a href="{:url('Conf/lst')}">配置管理</a>
+                </li>
+                 <li class="active">添加配置项</li>
+               </ul>
+            </div>
+            <!-- /Page Breadcrumb -->
+
+            <!-- Page Body -->
+            <div class="page-body">
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">新增配置</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" role="form" action="#" method="post">
+
+                        <div class="form-group">
+                            <label for="catename" class="col-sm-2 control-label no-padding-right">英文名称</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="ename" placeholder="" name="ename" value="{$confRes.ename}" type="text">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="catename" class="col-sm-2 control-label no-padding-right">中文名称</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="cname" placeholder="" name="cname" value="{$confRes.cname}" type="text">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="catename" class="col-sm-2 control-label no-padding-right">表单类型</label>
+                            <div class="col-sm-6">
+                               <select name="form_type">
+                                    <option value="input" {if condition="$confRes['form_type'] eq 'input'"}selected="selected"{/if} >文本框</option>
+                                    <option value="radio" {if condition="$confRes['form_type'] eq 'radio'"}selected="selected"{/if}>单选</option>
+                                    <option value="checkbox" {if condition="$confRes['form_type'] eq 'checkbox'"}selected="selected"{/if}>多选</option>
+                                    <option value="file" {if condition="$confRes['form_type'] eq 'file'"}selected="selected"{/if}>上传文件</option>
+                                    <option value="select" {if condition="$confRes['form_type'] eq 'select'"}selected="selected"{/if}>下拉框</option>
+                                    <option value="textarea" {if condition="$confRes['form_type'] eq 'textarea'"}selected="selected"{/if}>文本域</option>
+                               </select>
+                            </div>
+                        </div>
+
+                          <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label no-padding-right">配置类型</label>
+                            <div class="col-sm-6">
+                              <div class="radio" style="float:left; padding-right:10px;">
+                                <label>
+                                    <input name="conf_type" value="1" class="colored-blue"  type="radio" checked="checked">
+                                    <span class="text">前台配置项 </span>
+                                </label>
+                            </div>
+                            <div class="radio" style="float:left;">
+                                <label>
+                                    <input name="conf_type" value="2" class="colored-blue" type="radio">
+                                    <span class="text">后台配置项 </span>
+                                </label>
+                            </div>
+                            </div>
+                        </div>
+
+                         <div class="form-group">
+                            <label for="catename" class="col-sm-2 control-label no-padding-right">默认值</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="values" placeholder="" name="values" value="{$confRes.values}"  type="text">
+                            </div>
+                        </div>
+
+                         <div class="form-group">
+                            <label for="catename" class="col-sm-2 control-label no-padding-right">可选值</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="value" placeholder="" name="value"  value="{$confRes.value}" type="text">
+                            </div>
+                        </div>
+        
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="button" onClick="editConf(this)" id="{$confRes.id}" class="btn btn-default">修改信息</button>&nbsp;
+                                <span class="red" id="errorMessage"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+        </div>  
+    </div>
+<script type="text/javascript">
+function editConf(obj){
+    var url = "{:url('Conf/edit')}";
+    var jump = "{:url('Conf/lst')}";
+    var id = $(obj).attr('id'); 
+    var ename = $("#ename").val();  
+    var cname = $("#cname").val();
+    var form_type = $("[name='form_type']").select().val();
+    var conf_type = $("input[name='conf_type']:checked").val();
+    var values = $("#values").val();
+    var value = $("#value").val();
+    $.ajax({
+        type: "POST",
+        url: url,
+        dateType: "json",
+        data:{id:id,ename:ename,cname:cname,form_type:form_type,conf_type:conf_type,values:values,value:value},
+        success:function(data){
+            
+            if(data == 1){
+                location.href = jump;
+            }else if(data.error == 0){
+                $("#errorMessage").html('* '+data.message);
+            }
+            else if(data == 2){
+                alert("配置项修改失败！");
+            }   
+        }
+
+    });
+}
+</script>
+{include file="common/foot"}

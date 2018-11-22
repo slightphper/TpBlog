@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>{$configs.blogName} — Code Life</title>
+    <link rel="ICON" href="/logo.png">
+    <link rel="SHORTCUT ICON" href="/logo.png">
+    <!--[if lt IE 11]><script>window.location.href="https://www.yanshisan.cn/DisableAccess.html";</script><![endif]-->
+    <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+    <link href="__PUBLIC__/css/diarygloable.css" rel="stylesheet"/>
+    <link href="__PUBLIC__/css/animate.css" rel="stylesheet"/>
+    <link href="__PUBLIC__/css/timeline.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="header">
+    </div>
+    {include file="common/header"}
+    <div class="doc-container" id="doc-container">
+<div class="container-fixed">
+    <div class="timeline-box shadow">
+        <div class="timeline-main">
+            <h1><i class="fa fa-clock-o"></i>
+            	<a href="javascript:void(0)" class="header-logo" id="logo" style="margin-left:45px;">.Start</a>
+            </h1>
+            <div class="timeline-line"></div>
+                    <div class="timeline-year">
+                        <h2><a class="yearToggle"> Coding</a><i class="fa fa-caret-down fa-fw"></i></h2>
+                        <div class="timeline-month">
+                            <ul>
+                            	{volist name="diarys" id="diary"}
+                                <li>
+                                    <div class="h4 animated fadeInLeft">
+                                        <p class="date">{$diary.time|date="Y 年 m 月 d 日",###}</p>
+                                    </div>
+                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
+                                    <div class="content animated fadeInRight">{$diary.content}</div>
+                                    <div class="clear"></div>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </div>
+                    </div>
+            <h1 style="padding-top:4px;padding-bottom:2px;margin-top:40px;"><i class="fa fa-hourglass-end"></i> <a href="javascript:void(0)" class="header-logo" id="logo" style="margin-left:45px;">END</a></h1>
+        </div>
+    </div>
+</div>
+    </div>
+ {include file="common/footer"}
+<script src="__PUBLIC__/layui/layui.js"></script>
+<script src="__PUBLIC__/js/yss/gloableNew.js"></script>
+<script>NProgress.start();</script>
+<script src="__PUBLIC__/js/yss/timeline.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?db61211eab38025ea7cb1aa72611175a";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script> 
+    window.onload = function () {
+        NProgress.done();
+    };
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+</body>
+</html>

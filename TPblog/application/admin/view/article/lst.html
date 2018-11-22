@@ -1,0 +1,117 @@
+<!-- 头部 -->
+{include file="common/top"}
+<!-- /头部 -->
+<div class="main-container container-fluid">
+	<div class="page-container">
+	  <!-- Page Sidebar -->
+      {include file="common/left"}
+        <!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Breadcrumb -->
+            <div class="page-breadcrumbs">
+                <ul class="breadcrumb">
+                 <li>
+                    <a href="{:url('index/index')}">系统</a>
+                </li>
+                    <li class="active">文章管理</li>
+                </ul>
+            </div>
+            <!-- /Page Breadcrumb -->
+
+            <!-- Page Body -->
+            <div class="page-body">
+                    
+<button type="button" tooltip="添加文章" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('article/add')}'"> <i class="fa fa-plus"></i> Add
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table table-bordered table-hover">
+                        <thead class="">
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">文章标题</th>
+                                <th class="text-center">文章作者</th>
+                                <th class="text-center">是否置顶</th>
+                                <th class="text-center">标题图片</th>
+                                <th class="text-center">所属分类</th>
+                                <th class="text-center">发布时间</th>
+                                <th class="text-center" width="15%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {volist name="articles" id="vo"}
+                           <tr>
+                                <td align="center">{$vo.id}</td>
+                                <td align="center">{$vo.title}</td>
+                                <td align="center">{$vo.admin.nickname}</td>
+                                <td align="center">
+                                       {if condition="$vo['state'] eq 1"}
+                                            <img src="__PUBLIC__/images/right.png" height="26px">
+                                       {else/}
+                                            <img src="__PUBLIC__/images/wrong.png" height="22px">
+                                       {/if}
+                                    </td>
+                                <td align="center">
+                                    {if condition="$vo['pic'] neq '' "}
+                                    <img src="__IMG__{$vo.pic}" alt="" height="50px" width="80">
+                                    {else /}
+                                    暂无图片
+                                    {/if}
+                                </td>
+                                <td align="center">{$vo.cate.catename}</td>
+                                <td align="center">{$vo.time|date="Y-m-d H:i",###}</td>
+                                <td align="center">
+                                    <a href="{:url('article/edit',array('id'=>$vo['id']))}" class="btn btn-primary btn-sm shiny">
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                    
+                                    <a href="#" onClick="del(this)" id="{$vo.id}" class="btn btn-danger btn-sm shiny">
+                                        <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                   
+                                </td>
+                            </tr>
+                            {/volist}                        
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align:right; margin-top:10px;">
+                    {$articles->render()}
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+            <!-- /Page Body -->
+        </div>
+        <!-- /Page Content -->
+	</div>	
+</div>
+<script type="text/javascript">
+function del(obj){
+    if(!confirm('确定要删除此文章吗？')){
+        return false;
+    }
+    var url = "{:url('Article/del')}";
+    var id = $(obj).attr('id');
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {id:id},
+        success:function(data){
+            if(data == 1){
+                $(obj).parent().parent().remove();
+            }else{
+                alert("删除该文章失败！");
+            }
+        }
+    });
+}
+</script>
+{include file="common/foot"}

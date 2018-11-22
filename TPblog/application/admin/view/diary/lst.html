@@ -1,0 +1,98 @@
+<!-- 头部 -->
+{include file="common/top"}
+<!-- /头部 -->
+<div class="main-container container-fluid">
+	<div class="page-container">
+	  <!-- Page Sidebar -->
+      {include file="common/left"}
+        <!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Breadcrumb -->
+            <div class="page-breadcrumbs">
+                <ul class="breadcrumb">
+                 <li>
+                    <a href="{:url('index/index')}">系统</a>
+                </li>
+                    <li class="active">随笔管理</li>
+                </ul>
+            </div>
+            <!-- /Page Breadcrumb -->
+
+            <!-- Page Body -->
+            <div class="page-body">
+                    
+<button type="button" tooltip="添加文章" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('diary/add')}'"> <i class="fa fa-plus"></i> Add
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table table-bordered table-hover">
+                        <thead class="">
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">随笔内容</th>
+                                <th class="text-center">发布时间</th>
+                                <th class="text-center" width="15%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {volist name="diarys" id="vo"}
+                           <tr>
+                                <td align="center">{$vo.id}</td>
+                                <td align="center">{$vo.content}</td>
+                                <td align="center">{$vo['time']|date="Y-m-d",###}</td>
+                                <td align="center">
+                                    <a href="{:url('diary/edit',array('id'=>$vo['id']))}" class="btn btn-primary btn-sm shiny">
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                    
+                                    <a href="#" onClick="del(this)" id="{$vo.id}" class="btn btn-danger btn-sm shiny">
+                                        <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                   
+                                </td>
+                            </tr>
+                            {/volist}                        
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align:right; margin-top:10px;">
+                    {$diarys->render()}
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+<script type="text/javascript">
+function del(obj){
+    if(!confirm('确定要删除此条随笔？')){
+        return false;
+    }
+    var url = "{:url('Diary/del')}";
+    var id = $(obj).attr('id');
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {id:id},
+        success:function(data){
+            if(data == 1){
+                $(obj).parent().parent().remove();
+            }else{
+                alert("删除失败！");
+            }
+        }
+
+    });
+}
+</script>
+{include file="common/foot"}

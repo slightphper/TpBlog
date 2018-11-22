@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>{$configs.blogName}&#183;友情链接</title>
+    <link rel="ICON" href="/logo.png">
+    <link rel="SHORTCUT ICON" href="/logo.png">
+    <!--[if lt IE 11]><script>window.location.href="https://www.yanshisan.cn/DisableAccess.html";</script><![endif]-->
+    <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+    <link href="__PUBLIC__/css/diarygloable.css" rel="stylesheet"/>
+    <link href="__PUBLIC__/css/about.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="header">
+    </div>
+    {include file="common/header"}
+    <div class="doc-container" id="doc-container">      
+<div class="about-banner" id="container">
+    <header class="l-top hasAnim arrow-holder">
+        <a data-path-hover="M31.3184948,33.1943359 C36.3357454,28.0664371 44.4728686,28.0690462 49.572124,33.2807584 C54.6360745,38.4563871 54.6061839,46.8782889 49.6566817,51.9369454 L31.318494,69.5197703 L49.6566817,89.71735 C54.6739322,94.8452488 54.6713794,103.161825 49.572124,108.373537 C44.5081735,113.549166 36.267997,113.518616 31.3184948,108.459959 L3.8112137,78.891075 C-1.25273677,73.7154463 -1.2880417,65.3601778 3.8112137,60.1484655 L31.3184948,33.1943359 Z">
+            <svg width="0" height="0">
+                <path fill="#fff" d="M58.9103319,3.8342148C63.9275825,-1.29368407,72.0647057,-1.29107495,77.1639611,3.92063726C82.2279116,9.09626594,82.198021,17.5181678,77.2485188,22.5768242C77.2485188,22.5768242,31.318494,69.5197703,31.318494,69.5197703C31.318494,69.5197703,77.2485188,116.462716,77.2485188,116.462716C82.2657693,121.590615,82.2632165,129.907191,77.1639611,135.118903C72.1000106,140.294532,63.8598341,140.263982,58.9103319,135.205326C58.9103319,135.205326,3.8112137,78.891075,3.8112137,78.891075C-1.25273677,73.7154463,-1.2880417,65.3601778,3.8112137,60.1484655C3.8112137,60.1484655,58.9103319,3.8342148,58.9103319,3.8342148C58.9103319,3.8342148,58.9103319,3.8342148,58.9103319,3.8342148"></path>
+            </svg>
+        </a><!--/arrow-->
+        <a data-path-hover="M31.3184948,33.1943359 C36.3357454,28.0664371 44.4728686,28.0690462 49.572124,33.2807584 C54.6360745,38.4563871 54.6061839,46.8782889 49.6566817,51.9369454 L31.318494,69.5197703 L49.6566817,89.71735 C54.6739322,94.8452488 54.6713794,103.161825 49.572124,108.373537 C44.5081735,113.549166 36.267997,113.518616 31.3184948,108.459959 L3.8112137,78.891075 C-1.25273677,73.7154463 -1.2880417,65.3601778 3.8112137,60.1484655 L31.3184948,33.1943359 Z">
+            <svg width="0" height="0">
+                <path fill="#fff" d="M58.9103319,3.8342148 C63.9275825,-1.29368407 72.0647057,-1.29107495 77.1639611,3.92063726 C82.2279116,9.09626594 82.198021,17.5181678 77.2485188,22.5768242 L31.318494,69.5197703 L77.2485188,116.462716 C82.2657693,121.590615 82.2632165,129.907191 77.1639611,135.118903 C72.1000106,140.294532 63.8598341,140.263982 58.9103319,135.205326 L3.8112137,78.891075 C-1.25273677,73.7154463 -1.2880417,65.3601778 3.8112137,60.1484655 L58.9103319,3.8342148 Z"></path>
+            </svg>
+        </a><!--/arrow-->
+    </header>
+    <div class="about-title">
+        <h1>友情链接</h1>
+        <p>临渊羡鱼 , 不如退而结网 .</p>
+    </div>
+</div>
+<div class="container-fixed">
+    <div class="container-inner">
+        <article>
+            <section>
+                <h1>链接说明</h1>
+               <!--  <p>
+                    <i class="fa fa-close"></i>经常宕机&nbsp;
+                    <i class="fa fa-close"></i>不合法规&nbsp;
+                    <i class="fa fa-close"></i>插边球站&nbsp;
+                    <i class="fa fa-close"></i>红标报毒&nbsp;
+                    <i class="fa fa-check"></i>原创优先&nbsp;
+                    <i class="fa fa-check"></i>技术优先
+                </p> -->
+                <p>
+                    交换友链请联系邮箱，本站信息如下：<br >
+                    邮 箱 ：345348563@qq.com<br >
+                    名称：码农书斋<br >
+                    网址：http://www.zihengblog.cn<br >
+                    图标：http://www.zihengblog.cn/logo.png<br >
+                    描述：Phper · CodeLife
+                </p>
+            </section>
+        </article>
+        <ul class="link-list">
+            {volist name="linkRes" id="links"}
+            <li>
+                <div class="pd-lr-10">
+                    <a href="{$links.url}" target="_blank">
+                        {if condition="$links.pic neq ''"}
+                            <img src="{$links.pic}">
+                        {else/}
+                            <img src="__PUBLIC__/image/linkWrong.jpg">
+                        {/if}
+                        <h3>{$links.title}</h3>
+                        <p>{$links.desc}</p>
+                    </a>
+                </div>
+            </li>
+            {/volist} 
+        </ul>
+    </div>
+</div>
+    </div>
+{include file="common/footer"}
+<script src="__PUBLIC__/layui/layui.js"></script>
+<script src="__PUBLIC__/js/yss/gloableNew.js"></script>
+
+<script>NProgress.start();</script>
+
+<script src="__PUBLIC__/js/yss/link.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="__PUBLIC__/js/yss/swim.js"></script>  
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?db61211eab38025ea7cb1aa72611175a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script> 
+        window.onload = function () {
+            NProgress.done();
+        };
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</body>
+</html>
